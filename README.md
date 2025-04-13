@@ -126,6 +126,16 @@ graph TD
     style K fill:#f9d77e,stroke:#333,stroke-width:2px,color:#000
 
 ```
+## UI Design 
+
+![ui](Output/UI.png)
+
+## Input TextBox
+
+![input](Output/InputUI.png)
+
+## Output 
+![output](Output/Output1.png)
 
 ## 6. Conclusion
 
