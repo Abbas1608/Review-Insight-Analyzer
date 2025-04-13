@@ -81,17 +81,11 @@ In this project, BeautifulSoup4 is used to:
    ```
    python app.py
    ```
+2. Enter an Amazon product URL in the input field.
 
-2. Open your web browser and navigate to:
-   ```
-   http://127.0.0.1:5000
-   ```
+3. Click "Analyze" and wait for the results to appear.
 
-3. Enter an Amazon product URL in the input field.
-
-4. Click "Analyze" and wait for the results to appear.
-
-5. Review the sentiment analysis results shown in the chart and percentage breakdown.
+4. Review the sentiment analysis results shown in the chart and percentage breakdown.
 
 ### What is a Virtual Environment?
 
