@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Insight - Product Reviews Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-chart-simple"></i>
+            <span class="logo-text">ReviewInsight</span>
+        </div>
+        <nav>
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <ul class="nav-items">
+                <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="#" class="active"><i class="fa-solid fa-chart-line"></i> Analysis</a></li>
+                <li><a href="#"><i class="fa-solid fa-dollar-sign"></i> Pricing</a></li>
+                <li><a href="#"><i class="fa-regular fa-heart"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-user"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="badge">AI-Powered Analysis</div>
+        <h1>Review Insight Navigator</h1>
+        <p class="subtitle">
+            Analyze Amazon product reviews, track sentiment patterns, and monitor price changes to make smarter shopping decisions.
+        </p>
+
+        <div class="card">
+            <h2>Product Intelligence Hub</h2>
+            <p class="card-subtitle">
+                Analyze Amazon product reviews with AI-powered sentiment analysis and track price fluctuations
+            </p>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3>Sentiment Analysis</h3>
+                    <p>Uncover detailed sentiment patterns in reviews</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon money">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                    <h3>Price Intelligence</h3>
+                    <p>Monitor historical prices to find the best deals</p>
+                </div>
+            </div>
+
+            <div class="url-input-section">
+                <div class="url-input-label">
+                    <i class="fa-solid fa-link"></i>
+                    <span>Product URL</span>
+                </div>
+                <div class="url-input-container">
+                    <input type="text" id="product-url" placeholder="Paste Amazon product URL...">
+                    <button id="analyze-btn"><i class="fa-solid fa-magnifying-glass"></i> Analyze</button>
+                </div>
+            </div>
+
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyzing reviews...</p>
+            </div>
+
+            <div id="results-section" class="hidden">
+                <h3>Sentiment Analysis Results</h3>
+                <div class="sentiment-results">
+                    <div class="sentiment-chart">
+                        <canvas id="sentiment-chart"></canvas>
+                    </div>
+                    <div class="sentiment-breakdown">
+                        <div class="sentiment-item positive">
+                            <h4>Positive</h4>
+                            <div class="percentage" id="positive-percentage">0%</div>
+                        </div>
+                        <div class="sentiment-item negative">
+                            <h4>Negative</h4>
+                            <div class="percentage" id="negative-percentage">0%</div>
+                        </div>
+                        <div class="sentiment-item neutral">
+                            <h4>Neutral</h4>
+                            <div class="percentage" id="neutral-percentage">0%</div>
+                        </div>
+                        <div class="total-reviews">
+                            <h4>Total Reviews Analyzed</h4>
+                            <div id="total-reviews">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="error-message" class="hidden">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <p>Error analyzing reviews. Please check the URL and try again.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="scroll-top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
