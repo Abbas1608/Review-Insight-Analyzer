@@ -51,8 +51,7 @@ In this project, BeautifulSoup4 is used to:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/review-insight-analyzer.git
-   cd review-insight-analyzer
+   git clone https://github.com/Abbas1608/Mini-Project.git
    ```
 
 2. Create a virtual environment:
