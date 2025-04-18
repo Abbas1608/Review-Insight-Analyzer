@@ -102,8 +102,9 @@ In this project, the virtual environment isolates the Flask, BeautifulSoup4, and
 ![After](Output/After_run.png)
 
 ```
-"Once the application is executed, the project folder will include files such as amazon_reviews.csv,
-which stores all the scraped reviews from the provided Amazon product URL."
+Important Information: 
+Once the application is executed, the project folder will include files such as "amazon_reviews.csv",
+which stores all the scraped reviews from the provided Amazon product URL.
 ```
 
 ## 6. Project Workflow
