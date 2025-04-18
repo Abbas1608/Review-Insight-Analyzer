@@ -137,6 +137,14 @@ graph TD
 ## Output 
 ![output](Output/Output1.png)
 
+## After run 
+![After](Output/After_run.png)
+
+```
+"Once the application is executed, the project folder will include files such as amazon_reviews.csv,
+which stores all the scraped reviews from the provided Amazon product URL."
+```
+
 ## 6. Conclusion
 
 Review Insight Analyzer provides a powerful solution to the challenge of navigating the overwhelming volume of customer reviews in modern e-commerce. By leveraging natural language processing and sentiment analysis, it transforms raw textual data into actionable insights that guide purchasing decisions.
