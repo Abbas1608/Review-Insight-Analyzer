@@ -2,10 +2,10 @@ import csv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 import time
 import pickle
 import sys
+import os
 
 # Set up Chrome WebDriver
 options = webdriver.ChromeOptions()
@@ -13,11 +13,14 @@ options.add_argument("--headless")  # Run without opening a browser
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 
+# Specify the path to your ChromeDriver
+# You'll need to download ChromeDriver manually and place it in the project directory
+driver_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chromedriver.exe")
+
 # Initialize WebDriver
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+driver = webdriver.Chrome(service=Service(driver_path), options=options)
 
 # Amazon reviews URL
-
 url = sys.argv[1]
 driver.get(url)
 

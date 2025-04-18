@@ -1,34 +1,76 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
-from textblob import TextBlob 
 import csv
 import subprocess
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import torch
 
 # Create flask app
 flask_app = Flask(__name__)
 
-# Function to analyze sentiments
+# Initialize RoBERTa model and tokenizer
+tokenizer = AutoTokenizer.from_pretrained("cardiffnlp/twitter-roberta-base-sentiment")
+model = AutoModelForSequenceClassification.from_pretrained("cardiffnlp/twitter-roberta-base-sentiment")
+
+# Initialize VADER analyzer
+vader_analyzer = SentimentIntensityAnalyzer()
+
 def analyze_sentiments(reviews):
-    positive, negative, neutral = 0, 0, 0
+    # Initialize counters for both models
+    roberta_sentiments = {"positive": 0, "negative": 0, "neutral": 0}
+    vader_sentiments = {"positive": 0, "negative": 0, "neutral": 0}
+    
     for review in reviews:
-        analysis = TextBlob(review)
-        polarity = analysis.sentiment.polarity
-        if polarity > 0.1:
-            positive += 1
-        elif polarity < -0.1:
-            negative += 1
+        # RoBERTa analysis
+        inputs = tokenizer(review, return_tensors="pt", truncation=True, max_length=512)
+        with torch.no_grad():
+            outputs = model(**inputs)
+            scores = torch.nn.functional.softmax(outputs.logits, dim=1)
+            roberta_sentiment = torch.argmax(scores).item()
+            
+            if roberta_sentiment == 2:  # Positive
+                roberta_sentiments["positive"] += 1
+            elif roberta_sentiment == 0:  # Negative
+                roberta_sentiments["negative"] += 1
+            else:  # Neutral
+                roberta_sentiments["neutral"] += 1
+        
+        # VADER analysis
+        vader_scores = vader_analyzer.polarity_scores(review)
+        compound_score = vader_scores['compound']
+        
+        if compound_score >= 0.05:
+            vader_sentiments["positive"] += 1
+        elif compound_score <= -0.05:
+            vader_sentiments["negative"] += 1
         else:
-            neutral += 1
+            vader_sentiments["neutral"] += 1
 
     total = len(reviews)
     if total == 0:
-        return {"positive": 0, "negative": 0, "neutral": 0}
+        return {
+            "roberta": {"positive": 0, "negative": 0, "neutral": 0},
+            "vader": {"positive": 0, "negative": 0, "neutral": 0}
+        }
+
+    # Calculate percentages for both models
+    roberta_results = {
+        "positive": round((roberta_sentiments["positive"] / total) * 100, 1),
+        "negative": round((roberta_sentiments["negative"] / total) * 100, 1),
+        "neutral": round((roberta_sentiments["neutral"] / total) * 100, 1)
+    }
+    
+    vader_results = {
+        "positive": round((vader_sentiments["positive"] / total) * 100, 1),
+        "negative": round((vader_sentiments["negative"] / total) * 100, 1),
+        "neutral": round((vader_sentiments["neutral"] / total) * 100, 1)
+    }
 
     return {
-        "positive": round((positive / total) * 100, 1),
-        "negative": round((negative / total) * 100, 1),
-        "neutral": round((neutral / total) * 100, 1)
+        "roberta": roberta_results,
+        "vader": vader_results
     }
     
 @flask_app.route("/")
@@ -44,7 +86,6 @@ def analyze():
         return jsonify({'error': 'Invalid URL provided'}), 400
 
     try:
-
         subprocess.run(['python', 'scrape_reviews.py', product_url], check=True)
 
         # Read the newly scraped reviews
