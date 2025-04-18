@@ -72,6 +72,7 @@ In this project, BeautifulSoup4 is used to:
 4. Install the required dependencies:
    ```
    pip install -r requirements.txt
+   python -m textblob.download_corpora
    ```
 
 ### Usage
