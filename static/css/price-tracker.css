@@ -1,0 +1,218 @@
+.price-tracker-container {
+    background-color: #050404;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.price-tracker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.price-tracker-content {
+    display: flex;
+    gap: 20px;
+}
+
+.price-info-section {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.price-info {
+    background-color: #232020;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.price-label {
+    font-size: 1.2em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.current-price {
+    font-size: 3em;
+    color: #4CAF50;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.current-price .currency {
+    font-size: 0.7em;
+    margin-right: 5px;
+}
+
+.current-price .amount {
+    letter-spacing: -1px;
+}
+
+.price-change {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.2em;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    margin-top: 10px;
+}
+
+.price-change.positive {
+    color: #4CAF50;
+}
+
+.price-change.negative {
+    color: #f44336;
+}
+
+.price-change .icon {
+    font-size: 1.2em;
+}
+
+.price-update-time {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.price-alert-form {
+    background-color: #232020;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.price-alert-form h3 {
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.price-alert-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #232020;
+    color: white;
+    border: 1px solid #333;
+}
+
+.price-alert-form input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.price-alert-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.price-alert-form button:hover {
+    background-color: #45a049;
+}
+
+.price-history-section {
+    flex: 2;
+    min-width: 400px;
+    position: relative;
+    width: 100%;
+}
+
+.price-history-chart {
+    background-color: #232020;
+    border-radius: 8px;
+    padding: 20px;
+    height: 400px;
+    position: relative;
+    width: 100%;
+}
+
+.price-history-chart canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .price-tracker-content {
+        flex-direction: column;
+    }
+    
+    .price-info-section, .price-history-section {
+        min-width: 100%;
+    }
+    
+    .price-history-chart {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .price-tracker-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .current-price {
+        font-size: 2em;
+    }
+    
+    .price-history-chart {
+        height: 300px;
+        padding: 15px;
+    }
+    
+    .price-info-section {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .price-tracker-container {
+        padding: 15px;
+    }
+    
+    .price-history-chart {
+        height: 250px;
+        padding: 10px;
+    }
+    
+    .current-price {
+        font-size: 1.8em;
+    }
+    
+    .price-alert-form {
+        padding: 15px;
+    }
+} 

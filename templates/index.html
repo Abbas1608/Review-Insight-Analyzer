@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/price-tracker.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
@@ -112,6 +114,40 @@
                 <p>Error analyzing reviews. Please check the URL and try again.</p>
             </div>
         </div>
+
+        <div class="price-tracker-container">
+            <div class="price-tracker-header">
+                <h2>Price Tracker</h2>
+                <div class="price-change"></div>
+            </div>
+            
+            <div class="price-tracker-content">
+                <div class="price-info-section">
+                    <div class="price-info">
+                        <div class="price-label">Current Price</div>
+                        <div class="current-price">
+                            <span class="currency">₹</span>
+                            <span class="amount">0.00</span>
+                        </div>
+                        <div class="price-change"></div>
+                        <div class="price-update-time">Last updated: Just now</div>
+                    </div>
+                    
+                    <form id="priceAlertForm" class="price-alert-form">
+                        <h3>Set Price Alert</h3>
+                        <input type="number" id="targetPrice" placeholder="Target Price" step="0.01" required>
+                        <input type="email" id="email" placeholder="Email for alerts" required>
+                        <button type="submit">Set Alert</button>
+                    </form>
+                </div>
+                
+                <div class="price-history-section">
+                    <div class="price-history-chart">
+                        <canvas id="priceHistoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -120,6 +156,8 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/price-tracker.js') }}"></script>
 </body>
 </html>

@@ -74,7 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
         errorMessage.classList.add('hidden');
 
         try {
-            const response = await fetch('/analyze', {
+            // First analyze reviews
+            const reviewResponse = await fetch('/analyze', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -82,13 +83,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify({ url: productUrl })
             });
 
-            const data = await response.json();
+            const reviewData = await reviewResponse.json();
 
-            if (data.success) {
-                window.sentimentData = data.sentiment;
-                document.getElementById('total-reviews').textContent = data.total_reviews;
+            if (reviewData.success) {
+                window.sentimentData = reviewData.sentiment;
+                document.getElementById('total-reviews').textContent = reviewData.total_reviews;
                 updateChart();
                 resultsSection.classList.remove('hidden');
+                
+                // Then track price
+                const priceResponse = await fetch('/track-price', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ url: productUrl })
+                });
+                
+                const priceData = await priceResponse.json();
+                if (priceData.current_price !== undefined) {
+                    updatePriceTracker(priceData);
+                }
             } else {
                 errorMessage.classList.remove('hidden');
             }
@@ -99,4 +114,38 @@ document.addEventListener('DOMContentLoaded', function() {
             loadingDiv.classList.add('hidden');
         }
     });
+
+    async function analyzeReviews() {
+        const url = document.getElementById('urlInput').value;
+        
+        try {
+            // Analyze reviews
+            const reviewResponse = await fetch('/analyze', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url: url })
+            });
+            
+            const reviewData = await reviewResponse.json();
+            updateReviewAnalysis(reviewData);
+            
+            // Track price
+            const priceResponse = await fetch('/track-price', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url: url })
+            });
+            
+            const priceData = await priceResponse.json();
+            updatePriceTracker(priceData);
+            
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while analyzing the product.');
+        }
+    }
 });
