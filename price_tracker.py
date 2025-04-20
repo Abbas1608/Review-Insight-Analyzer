@@ -171,12 +171,14 @@ def get_price_change():
     price_history = get_price_history()
     if len(price_history) < 2:
         return None
-    
+
+    # Calculate difference in price over the time
     current_price = price_history[-1]['price']
     previous_price = price_history[-2]['price']
     change = current_price - previous_price
     percentage_change = (change / previous_price) * 100
-    
+
+    # Load the change in json file
     return {
         'change': change,
         'percentage_change': percentage_change,
