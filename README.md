@@ -2,7 +2,9 @@
 
 ## 1. Introduction
 
-Review Insight Analyzer is a web application that empowers users to make informed purchasing decisions by analyzing product reviews from Amazon. By simply pasting a product URL, users can quickly visualize sentiment patterns across hundreds of customer reviews, understanding the overall reception of a product without having to read through every review manually.
+Review Insight Analyzer is a web-based tool that helps users make smarter shopping decisions by analyzing product reviews and tracking price trends. It uses Selenium to scrape Amazon reviews and prices, then applies sentiment analysis to classify reviews as positive, negative, or neutral. Users can also view historical price changes to determine the best time to buy. 
+
+Built with Python, Flask, HTML, and JavaScript, this tool offers an intuitive interface and real-time results. Ideal for shoppers and data enthusiasts, Review Insight Analyzer combines review insights and pricing intelligence into one powerful application.
 
 The application provides a visual breakdown of positive, negative, and neutral sentiments expressed in reviews, helping users identify potential issues or strengths of products before making a purchase. This tool is particularly valuable in today's e-commerce landscape where product listings often have hundreds or thousands of reviews that would be impossible to manually process.
 
