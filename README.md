@@ -31,6 +31,8 @@ In this project, BeautifulSoup4 is used to:
 ## 3. Features
 
 - **Intuitive User Interface**: Clean, dark-themed UI with clear navigation and responsive design
+- **Price Tracking** : Monitors price changes for selected products and displays historical trends to help identify the best time to buy.
+-**Sentiment Analysis of Reviews**:Automatically fetches Amazon product reviews and uses Natural Language Processing (NLP) to determine the percentage of positive, negative, and neutral feedback. 
 - **URL-Based Analysis**: Simply paste an Amazon product URL to begin analysis
 - **Visual Sentiment Breakdown**: 
   - Doughnut chart visualization of positive, negative, and neutral reviews
@@ -39,6 +41,7 @@ In this project, BeautifulSoup4 is used to:
 - **AI-Powered Analysis**: Advanced sentiment analysis algorithms to accurately categorize reviews
 - **Cross-Device Compatibility**: Fully responsive design that works on desktop, tablet, and mobile devices
 - **Real-Time Processing**: Quick analysis with visual loading indicators
+- **Automated Scraping** : Uses Selenium to dynamically scrape product data and reviews directly from Amazon product pages.
 - **Error Handling**: Clear feedback when issues arise with URL processing
 
 ## 4. Installation and Usage
